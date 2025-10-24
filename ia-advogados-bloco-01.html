@@ -432,14 +432,41 @@
                     <li>Capacidade de generalizar conhecimento para novas situações</li>
                 </ul>
 
-                <h3>Modelos de Linguagem (LLMs)</h3>
+                <h3>Modelos de Linguagem de Grande Porte (LLMs)</h3>
                 <div class="card">
-                    <p><strong>Large Language Models</strong> - Sistemas treinados em vastos conjuntos de textos (livros, artigos, documentos, internet) que:</p>
-                    <ul>
-                        <li>Aprendem padrões linguísticos, estruturas argumentativas e conhecimento geral</li>
-                        <li>São capazes de gerar texto, responder perguntas, resumir documentos, traduzir, entre outras tarefas</li>
-                        <li><strong>Exemplos:</strong> GPT (OpenAI), Gemini (Google), Claude (Anthropic)</li>
-                    </ul>
+                    <p>Estes modelos são algoritmos de IA treinados a partir de enormes volumes de <b>texto</b> (livros, artigos, sites) e aprendem padrões da linguagem, permitindo gerar, resumir, traduzir, analisar ou responder textos de forma natural.</p><br >
+                    
+                    <p><strong>Como funcionam?</strong></p>
+                    <p>Utilizam redes neurais profundas que reconhecem relações estatísticas entre palavras, frases e conceitos, simulando linguagem humana.</p><br>
+
+                    <div style="text-align:center;">
+                        <img src="img01.png" alt="Rede LLM com múltiplas camadas">
+                    </div>    
+
+                    <table border="1" cellpadding="6">
+                        <thead>
+                            <tr>
+                                <th>Modelo</th><th>Empresa / Família</th><th>Tipo</th><th>Multimodal</th><th>Janela de Contexto</th><th>Destaques</th><th>Melhor Uso</th><th>Observações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>GPT-5</td><td>OpenAI</td><td>Proprietário</td><td>Sim (texto, imagem, voz, vídeo)</td><td>Até 400.000 tokens</td><td>Unificação de funções; raciocínio avançado; precisão e confiabilidade</td><td>Automação, agentes, raciocínio técnico</td><td>Reduz alucinações, integração nativa com ferramentas</td></tr> 
+
+                            <tr><td>GPT-4o</td><td>OpenAI</td><td>Proprietário</td><td>Sim (texto, imagem, áudio e vídeo)</td><td>Até 128.000 tokens</td><td>Processamento multimodal em tempo real, ótima fluência</td><td>Chat avançado, conteúdo multimodal</td><td>Foco em velocidade e qualidade multimodal</td></tr>
+
+                            <tr><td>Claude 4.5 Sonnet</td><td>Anthropic</td><td>Proprietário</td><td>Sim (texto e imagem)</td><td>Até 200.000 tokens</td><td>Seguro, ético, contexto e clareza</td><td>Escrita analítica, tutoria, suporte</td><td>Compreensão de textos complexos</td></tr>
+
+                            <tr><td>Claude Opus 4.1</td><td>Anthropic</td><td>Proprietário</td><td>Sim</td><td>Hasta 64.000 tokens saída</td><td>74,5% SWE-bench; raciocínio híbrido</td><td>Codificação, engenharia de software</td><td>Refatoração em bases grandes</td></tr>
+
+                            <tr><td>Gemini 2.5 Flash</td><td>Google DeepMind</td><td>Proprietário</td><td>Sim</td><td>Até 256.000 tokens</td><td>Rápido, baixo custo, "orçamento de pensamento"</td><td>Resumos e aplicações em tempo real</td><td>Ideal para startups e soluções ágeis</td></tr>
+
+                            <tr><td>Gemini 2.5 Pro</td><td>Google DeepMind</td><td>Proprietário</td><td>Sim (texto, imagem, vídeo, voz)</td><td>Até 1.000.000 tokens</td><td>Raciocínio científico, multimodalidade extrema</td><td>Pesquisa, análise científica/corporativa</td><td>Grande contexto, precisão extrema</td></tr>
+
+                            <tr><td>Grok 4</td><td>xAI (Elon Musk)</td><td>Proprietário</td><td>Sim (texto e dados estruturados)</td><td>128.000–256.000 tokens</td><td>Raciocínio lógico profundo, integração a ferramentas</td><td>Análise técnica, matemática, engenharia</td><td>Versão Heavy para tarefas complexas</td></tr>
+
+                            <tr><td>Qwen 2.5</td><td>Alibaba Cloud</td><td>Código aberto</td><td>Sim (texto e visual)</td><td>Até 128.000 tokens</td><td>Modelos 0,5B–72B parâmetros, produção estruturada</td><td>Geração estruturada, aplicações locais</td><td>Código aberto e escalabilidade</td></tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <h3>🎯 O conceito de Tokens</h3>
@@ -488,71 +515,51 @@
                     </div>
                 </div>
 
-                <h2>🔍 Tipos de IA Relevantes para o Direito</h2>
+                <h2>🔍 Tipos Principais de IA</h2>
 
                 <div class="tool-card">
                     <h3>IA Generativa</h3>
-                    <p>Cria novo conteúdo baseado em padrões aprendidos</p>
-                    <h4>Aplicações jurídicas:</h4>
+                    <p>Cria conteúdo novo (texto, imagem, áudio, vídeo) com base em padrões de dados anteriores.</p>
+                    <h4>Exemplos de aplicações:</h4>
                     <ul>
-                        <li>Rascunhos de petições, contratos e pareceres</li>
-                        <li>Reformulação de trechos jurídicos</li>
-                        <li>Geração de minutas personalizadas</li>
-                        <li>Criação de argumentos alternativos</li>
+                        <li>Geração automática de textos jurídicos, vídeos, música.</li>
+                        <li>Imagens sintéticas</li>
+                        <li>Vídeos</li>
+                        <li>Música</li>
                     </ul>
-                    <p><strong>Ferramentas:</strong> ChatGPT, Claude, Gemini</p>
+                    <p><strong>Como funciona?</strong></p> <p>Utiliza modelos deep learning para gerar algo novo.</p>
+                    <p><strong><br>Como usar:</strong></p> <p>Ferramentas prontas como o ChatGPT, Gemini, Claude, DALL-E, etc. Normalmente basta fornecer um prompt ou input e o sistema gera a saída.</p>
                 </div>
 
                 <div class="tool-card">
                     <h3>IA Preditiva</h3>
-                    <p>Analisa dados históricos para fazer previsões</p>
-                    <h4>Aplicações jurídicas:</h4>
+                    <p>Analisa dados históricos para prever eventos, resultados ou padrões futuros.</p>
+                    <h4>Exemplos de aplicações:</h4>
                     <ul>
-                        <li>Previsão de resultados processuais</li>
-                        <li>Análise de probabilidade de sucesso</li>
-                        <li>Identificação de riscos em contratos</li>
-                        <li>Estimativa de valores em ações indenizatórias</li>
+                        <li>Jurimetria</li>
+                        <li>Previsão de demanda</li>
+                        <li>Análise de risco</li>
+                        <li>Diagnóstico médico</li>
                     </ul>
-                    <p><strong>Ferramentas:</strong> JUSTTO, Dara, Projuris (especializadas em Jurimetria)</p>
+                    <p><strong>Como funciona?</strong></p> <p>Usa machine learning para encontrar padrões e projetar tendências.</p>
+                    <p><strong><br>Como usar:</strong></p> <p>Pode-se usar ferramentas prontas como o Google Vertex AI,  DataRobot, etc. Para casos específicos, é possível programar e treinar modelos usando Python, R, etc.</p>
                 </div>
 
-                <div class="tool-card">
-                    <h3>IA de Análise e Classificação</h3>
-                    <p>Processa e categoriza grandes volumes de informação</p>
-                    <h4>Aplicações jurídicas:</h4>
-                    <ul>
-                        <li>Revisão de due diligence (análise de milhares de documentos)</li>
-                        <li>Classificação de jurisprudência</li>
-                        <li>Extração de cláusulas específicas em contratos</li>
-                        <li>Identificação de precedentes relevantes</li>
-                    </ul>
-                    <p><strong>Ferramentas:</strong> Claude (análise de documentos), NotebookLM</p>
-                </div>
 
                 <div class="tool-card">
-                    <h3>IA Conversacional/Assistentes</h3>
-                    <p>Interage em linguagem natural para tarefas específicas</p>
-                    <h4>Aplicações jurídicas:</h4>
+                    <h3>IA Conversacional</h3>
+                    <p>Tipo particular de IA Generativa projetada para dialogar com pessoas por texto ou voz, entendendo e respondendo perguntas, comandos ou solicitações.</p>
+                    <h4>Exemplos de aplicações:</h4>
                     <ul>
-                        <li>Assistentes de pesquisa jurídica</li>
-                        <li>Chatbots para triagem de clientes</li>
-                        <li>Consulta rápida a legislação</li>
-                        <li>Esclarecimento de dúvidas procedimentais</li>
+                        <li>Chatbots</li>
+                        <li>Assistentes virtuais</li>
+                        <li>Atendimento automatizado</li>
+                        <li>FAQ inteligente</li>
                     </ul>
-                    <p><strong>Ferramentas:</strong> Perplexity AI, ChatGPT, assistentes personalizados</p>
+                    <p><strong>Como funciona?</strong></p> <p>Usa LLMs, processamento de linguagem natural (NLP), modelos de contexto e personalização..</p>
+                    <p><strong><br>Como usar:</strong></p> <p>Ferramentas prontas como o ChatGPT, Gemini, Alexa ou Google Assistente. Podem ser em sites, apps, sistemas via API.</p>
                 </div>
 
-                <div class="tool-card">
-                    <h3>IA de Busca e Recuperação</h3>
-                    <p>Encontra informações relevantes em grandes bases de dados</p>
-                    <h4>Aplicações jurídicas:</h4>
-                    <ul>
-                        <li>Pesquisa de jurisprudência</li>
-                        <li>Localização de dispositivos legais específicos</li>
-                        <li>Busca semântica (por significado, não apenas palavras-chave)</li>
-                    </ul>
-                    <p><strong>Ferramentas:</strong> Perplexity AI, Bing AI</p>
-                </div>
             </section>
 
             <!-- SEÇÃO FERRAMENTAS -->
