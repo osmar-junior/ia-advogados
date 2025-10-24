@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA para Advogados - Bloco 1: Fundamentos</title>
+    <title>IA para Advogados - Fundamentos</title>
     <style>
         * {
             margin: 0;
@@ -1047,6 +1047,32 @@
             }
         }
 
+        footer a:hover {
+            color: var(--accent) !important;
+            text-decoration: underline !important;
+            opacity: 1 !important;
+        }
+
+        footer a {
+            position: relative;
+            display: inline-block;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }        
+
     </style>
 </head>
 <body>
@@ -1076,7 +1102,7 @@
             
             <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); display: inline-block; padding: 18px 40px; border-radius: 50px; margin-bottom: 30px; border: 2px solid rgba(255, 255, 255, 0.25); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
                 <h3 style="color: white; margin: 0; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);">
-                    Bloco 1: Fundamentos e Primeiros Passos
+                    Fundamentos e Primeiros Passos
                 </h3>
             </div>
             
@@ -1121,7 +1147,7 @@
             <button class="nav-btn active" onclick="showSection('intro')">Introdução</button>
             <button class="nav-btn" onclick="showSection('ferramentas')">Ferramentas</button>
             <button class="nav-btn" onclick="showSection('comparativo')">Comparativo</button>
-            <button class="nav-btn" onclick="showSection('etica')">Ética</button>
+            <button class="nav-btn" onclick="showSection('etica')">Ética, Segurança e Regulamentação de IA</button>
             <button class="nav-btn" onclick="showSection('glossario')">Glossário</button>
             <button class="nav-btn" onclick="showSection('faq')">FAQ</button>
         </div>
@@ -2207,73 +2233,603 @@
 
             <!-- SEÇÃO ÉTICA -->
             <section id="etica">
-                <h2>⚖️ Considerações Éticas e de Segurança</h2>
-
-                <div class="danger">
-                    <h3>🔐 REGRAS DE OURO - Privacidade e Confidencialidade</h3>
-                    
-                    <h4>1. NUNCA compartilhe dados sensíveis ou sigilosos de clientes</h4>
-                    <ul>
-                        <li>Nomes completos, CPFs, CNPJs</li>
-                        <li>Números de processos identificáveis</li>
-                        <li>Detalhes íntimos de casos</li>
-                        <li>Estratégias processuais específicas</li>
-                    </ul>
-
-                    <h4>2. Anonimize sempre que possível</h4>
-                    <ul>
-                        <li>Use "Autor" e "Réu" ao invés de nomes reais</li>
-                        <li>Substitua valores específicos por "valor X"</li>
-                        <li>Remova informações identificadoras</li>
-                    </ul>
-
-                    <h4>3. Prefira versões pagas para dados profissionais</h4>
-                    <ul>
-                        <li>Maior segurança e controle de dados</li>
-                        <li>Opções de não uso para treinamento</li>
-                        <li>ChatGPT Enterprise e Claude for Work oferecem garantias contratuais</li>
-                    </ul>
-
-                    <h4>4. Modelos chineses: cautela redobrada</h4>
-                    <ul>
-                        <li>DeepSeek e Qwen têm servidores na China</li>
-                        <li>Legislação chinesa permite acesso governamental a dados</li>
-                        <li>Use apenas para conteúdo público ou genérico</li>
-                    </ul>
+                <h2>⚖️ Ética, Segurança e Regulamentação de IA no Judiciário</h2>
+                
+                <div class="highlight" style="background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);">
+                    <h3>📜 Resolução CNJ nº 615/2025: Marco Regulatório</h3>
+                    <p style="font-size: 1.1em; line-height: 1.8;">
+                        Em <strong>11 de março de 2025</strong>, o Conselho Nacional de Justiça publicou a Resolução nº 615, que estabelece <strong>diretrizes obrigatórias</strong> para o desenvolvimento, uso e governança de Inteligência Artificial no Poder Judiciário brasileiro.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>Por que isso importa para você, advogado?</strong><br>
+                        Esta Resolução define seus direitos, deveres e limitações ao usar IA em sua prática profissional, além de regular como tribunais e juízes podem empregar essas tecnologias.
+                    </p>
                 </div>
 
-                <h3>👨‍⚖️ Responsabilidade Profissional</h3>
+                <!-- Princípios Fundamentais -->
+                <h2 style="margin-top: 40px;">🎯 Princípios Fundamentais da Resolução</h2>
+                
+                <div class="grid">
+                    <div class="grid-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <h4 style="color: white; margin-top: 0;">👤 Centralidade Humana</h4>
+                        <p>A IA é ferramenta auxiliar. Decisões finais são sempre humanas.</p>
+                    </div>
+                    
+                    <div class="grid-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <h4 style="color: white; margin-top: 0;">⚖️ Justiça e Equidade</h4>
+                        <p>Proibição de vieses discriminatórios e garantia de igualdade.</p>
+                    </div>
+                    
+                    <div class="grid-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <h4 style="color: white; margin-top: 0;">🔍 Transparência</h4>
+                        <p>Obrigação de informar quando IA for utilizada em processos.</p>
+                    </div>
+                    
+                    <div class="grid-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <h4 style="color: white; margin-top: 0;">🔐 Proteção de Dados</h4>
+                        <p>Conformidade obrigatória com LGPD e segurança da informação.</p>
+                    </div>
+                </div>
+
+                <!-- Classificação de Riscos -->
+                <h2 style="margin-top: 40px;">📊 Classificação de Riscos das Aplicações de IA</h2>
+                
+                <p style="font-size: 1.05em; margin-bottom: 25px;">
+                    A Resolução categoriza soluções de IA em <strong>três níveis de risco</strong>, cada um com regras específicas de governança e auditoria:
+                </p>
+
+                <!-- RISCO EXCESSIVO -->
+                <div class="danger">
+                    <h3 style="margin-top: 0; color: #c62828;">🚫 RISCO EXCESSIVO - PROIBIDO (Art. 10)</h3>
+                    
+                    <p style="font-weight: 600; margin-bottom: 15px;">Aplicações VEDADAS ao Poder Judiciário:</p>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 1. Sistemas sem Revisão Humana</h4>
+                        <ul>
+                            <li>IA que não permita revisão ou alteração pelo usuário</li>
+                            <li>Sistemas que gerem dependência absoluta sem possibilidade de ajuste</li>
+                            <li><strong>Impacto:</strong> Violação da supervisão humana obrigatória</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 2. Perfis Preditivos de Criminalidade</h4>
+                        <ul>
+                            <li>Avaliar probabilidade de cometer crimes</li>
+                            <li>Prever reiteração delitiva (reincidência)</li>
+                            <li>Criar perfis em matéria trabalhista</li>
+                            <li><strong>Exemplo proibido:</strong> "Este réu tem 80% de chance de reincidir"</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 3. Classificação/Ranqueamento de Pessoas</h4>
+                        <ul>
+                            <li>Classificar credibilidade de testemunhas por IA</li>
+                            <li>Avaliar "plausibilidade de direitos" por perfil pessoal</li>
+                            <li>Ranquear méritos judiciais baseado em comportamento</li>
+                            <li><strong>Impacto:</strong> Violação da dignidade e presunção de inocência</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 4. Reconhecimento de Emoções</h4>
+                        <ul>
+                            <li>Identificar emoções por biometria (expressões faciais, voz)</li>
+                            <li><strong>Exemplo proibido:</strong> Detectar se testemunha está mentindo por análise facial</li>
+                        </ul>
+                    </div>
+
+                    <p style="background: #ffebee; padding: 15px; border-radius: 8px; margin-top: 20px; font-weight: 600; border-left: 4px solid #c62828;">
+                        ⚠️ <strong>Consequência:</strong> Soluções que se enquadrem nessas vedações devem ser imediatamente descontinuadas.
+                    </p>
+                </div>
+
+                <!-- ALTO RISCO -->
+                <div class="warning">
+                    <h3 style="margin-top: 0; color: #f57c00;">⚠️ ALTO RISCO - Uso Controlado (Art. 11)</h3>
+                    
+                    <p style="font-weight: 600; margin-bottom: 15px;">Aplicações permitidas COM rigorosa governança e auditoria:</p>
+                    
+                    <table style="margin: 20px 0;">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Categoria</th>
+                                <th>Descrição</th>
+                                <th style="width: 25%;">Exigências</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AR1 - Perfis Comportamentais</strong></td>
+                                <td>Identificação de padrões de comportamento de pessoas ou grupos</td>
+                                <td style="background: #fff3e0;">
+                                    • Avaliação de impacto<br>
+                                    • Auditoria obrigatória<br>
+                                    • Monitoramento contínuo
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>AR2 - Valoração de Provas</strong></td>
+                                <td>Aferição e valoração de provas (documentais, testemunhais, periciais)</td>
+                                <td style="background: #fff3e0;">
+                                    • Supervisão humana<br>
+                                    • Transparência total<br>
+                                    • Revisão por magistrado
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>AR3 - Tipificação de Crimes</strong></td>
+                                <td>Interpretação de fatos como crimes, contravenções ou atos infracionais</td>
+                                <td style="background: #fff3e0;">
+                                    • Vedado uso autônomo<br>
+                                    • Apenas suporte ao juiz<br>
+                                    • Documentação completa
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>AR4 - Aplicação de Normas</strong></td>
+                                <td>Juízos sobre aplicação de lei a fatos, quantificação/qualificação de danos</td>
+                                <td style="background: #fff3e0;">
+                                    • Análise de vieses<br>
+                                    • Registro de uso<br>
+                                    • Decisão final humana
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>AR5 - Biometria Facial</strong></td>
+                                <td>Identificação facial para monitoramento comportamental</td>
+                                <td style="background: #fff3e0;">
+                                    • Autorização prévia CNJ<br>
+                                    • Plano anti-viés racial<br>
+                                    • Auditoria rigorosa
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #f57c00;">
+                        <h4 style="color: #e65100; margin-top: 0;">📋 Obrigações para Alto Risco (Art. 13 e 14)</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Avaliação de Impacto Algorítmico:</strong> Análise contínua de impactos em direitos fundamentais</li>
+                            <li><strong>Dados Representativos:</strong> Treinamento com dados equilibrados e auditáveis</li>
+                            <li><strong>Registro Automatizado (Log):</strong> Rastreamento de todas as operações</li>
+                            <li><strong>Transparência:</strong> Documentação em linguagem simples do funcionamento</li>
+                            <li><strong>Mitigação de Vieses:</strong> Políticas ativas contra discriminação</li>
+                            <li><strong>Explicabilidade:</strong> Capacidade de explicar como decisões são tomadas (quando tecnicamente possível)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BAIXO RISCO -->
+                <div class="success">
+                    <h3 style="margin-top: 0; color: #2e7d32;">✅ BAIXO RISCO - Uso Livre com Monitoramento (Anexo)</h3>
+                    
+                    <p style="font-weight: 600; margin-bottom: 15px;">Aplicações permitidas com governança simplificada:</p>
+                    
+                    <div class="grid" style="margin-top: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR1 - Atos Ordinatórios</h4>
+                            <p>Classificação de processos, enriquecimento de cadastros, certificação de atos, sumarização de documentos</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> IA que organiza processos por assunto automaticamente</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR2 - Detecção de Padrões</h4>
+                            <p>Identificação de precedentes, detecção de desvios decisórios, análise jurisprudencial</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> Busca de decisões similares em casos análogos</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR3 - Relatórios Gerenciais</h4>
+                            <p>Análises jurimét ricas, integração de fontes, estatísticas processuais</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> Painel de produtividade de vara judicial</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR4 - Apoio à Redação</h4>
+                            <p>Produção de rascunhos de atos judiciais com supervisão e versão final do magistrado</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> IA que gera minuta de despacho ordinatório</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR5 - Formatação</h4>
+                            <p>Aprimoramento ou formatação de atividade humana sem alterar resultado material</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> Correção ortográfica e formatação de documentos</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR6 - Estatísticas</h4>
+                            <p>Análises estatísticas para política judiciária com supervisão contínua</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> Tempo médio de duração de processos por tipo</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR7 - Transcrição</h4>
+                            <p>Conversão de áudio e vídeo em texto com revisão humana</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> Transcrição automática de audiências</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                            <h4 style="color: #2e7d32; margin-top: 0;">BR8 - Anonimização</h4>
+                            <p>Ocultação de dados pessoais para conformidade com LGPD</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>Exemplo:</strong> Remoção automática de CPFs e nomes em documentos públicos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DIREITOS DOS ADVOGADOS -->
+                <h2 style="margin-top: 50px;">👨‍⚖️ Direitos dos Advogados e Partes</h2>
+
+                <div class="tool-card">
+                    <h3 style="color: var(--primary); margin-top: 0;">📜 Transparência Obrigatória (Art. 33)</h3>
+                    
+                    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #2196f3;">
+                        <h4 style="color: #1565c0; margin-top: 0;">✅ Direito à Informação</h4>
+                        <p><strong>Usuários externos (advogados, partes, peritos) devem ser informados de forma clara quando IA for utilizada nos serviços prestados.</strong></p>
+                        
+                        <ul style="margin-top: 15px; line-height: 1.8;">
+                            <li><strong>Linguagem simples:</strong> Informação acessível a pessoas não especializadas</li>
+                            <li><strong>Caráter consultivo:</strong> Deve ficar claro que a IA não toma decisões sozinha</li>
+                            <li><strong>Supervisão humana:</strong> Sempre haverá revisão por autoridade competente</li>
+                            <li><strong>Canais adequados:</strong> Avisos em sistemas, materiais informativos, guias explicativos</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #4caf50;">
+                        <h4 style="color: #2e7d32; margin-top: 0;">🔍 Acesso a Relatórios (Art. 12, VIII)</h4>
+                        <p><strong>OAB, Advocacia Pública, Ministério Público e Defensorias têm direito a:</strong></p>
+                        
+                        <ul style="margin-top: 15px; line-height: 1.8;">
+                            <li>Relatórios de auditoria das soluções de IA</li>
+                            <li>Relatórios de monitoramento contínuo</li>
+                            <li>Parametrização ao longo do ciclo de vida da solução</li>
+                            <li>Informações sobre como a IA funciona (explicabilidade)</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800;">
+                        <h4 style="color: #e65100; margin-top: 0;">⚖️ Direito de Contestação (Art. 5º, §3º)</h4>
+                        <p><strong>Em caso de suspeita de violação de direitos fundamentais por uso de IA:</strong></p>
+                        
+                        <ul style="margin-top: 15px; line-height: 1.8;">
+                            <li>OAB e entidades legitimadas podem peticionar ao Comitê Nacional de IA</li>
+                            <li>Podem solicitar auditorias das soluções de IA</li>
+                            <li>Direito de acesso às avaliações de impacto algorítmico</li>
+                            <li>Possibilidade de questionar resultados gerados por IA</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- USO DE IA GENERATIVA POR ADVOGADOS -->
+                <h2 style="margin-top: 50px;">🤖 Uso de IA Generativa (ChatGPT, Claude, etc.) - Art. 19</h2>
+
                 <div class="card">
-                    <p><strong>O advogado é SEMPRE responsável pelo resultado final:</strong></p>
-                    <ul>
+                    <h3 style="color: var(--primary); margin-top: 0;">✅ O Que é PERMITIDO</h3>
+                    
+                    <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <p style="font-weight: 600; margin-bottom: 15px;">Advogados PODEM usar LLMs (ChatGPT, Claude, Gemini, etc.) como ferramentas de auxílio, desde que:</p>
+                        
+                        <ol style="line-height: 2;">
+                            <li><strong>Realizem capacitação específica</strong> sobre riscos, limitações e uso ético de IA generativa</li>
+                            <li><strong>Usem como apoio à decisão,</strong> nunca como instrumento autônomo de tomada de decisão</li>
+                            <li><strong>Escolham fornecedores que respeitem proteção de dados</strong> (conformidade com LGPD)</li>
+                            <li><strong>Evitem compartilhar dados sigilosos</strong> sem anonimização prévia</li>
+                            <li><strong>Informem ao tribunal sobre o uso,</strong> quando aplicável</li>
+                        </ol>
+                    </div>
+
+                    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #1565c0; margin-top: 0;">💡 Exemplos de Uso Adequado:</h4>
+                        <ul style="line-height: 1.8;">
+                            <li>✅ Rascunho inicial de petição (com revisão e personalização posterior)</li>
+                            <li>✅ Pesquisa de legislação e doutrina (com verificação das fontes)</li>
+                            <li>✅ Estruturação de argumentos jurídicos</li>
+                            <li>✅ Resumo de decisões judiciais públicas</li>
+                            <li>✅ Reformulação de textos para melhor clareza</li>
+                            <li>✅ Criação de checklists procedimentais</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="danger">
+                    <h3 style="margin-top: 0;">🚫 O Que é VEDADO (Art. 19, §3º)</h3>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 1. Dados Sigilosos ou Protegidos por Segredo de Justiça</h4>
+                        <p style="margin-bottom: 10px;"><strong>PROIBIDO inserir em IA externa:</strong></p>
+                        <ul>
+                            <li>Processos sob segredo de justiça (integral ou parcial)</li>
+                            <li>Dados pessoais sensíveis de clientes sem anonimização</li>
+                            <li>Informações confidenciais de estratégias processuais</li>
+                            <li>Documentos com informações privilegiadas</li>
+                        </ul>
+                        <p style="background: #ffebee; padding: 12px; border-radius: 5px; margin-top: 15px; font-weight: 600;">
+                            ⚠️ <strong>Exceção:</strong> Permitido SE os dados forem devidamente anonimizados NA ORIGEM
+                        </p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 2. Uso em Aplicações de Alto Risco</h4>
+                        <p style="margin-bottom: 10px;"><strong>PROIBIDO usar IA privada para:</strong></p>
+                        <ul>
+                            <li>Valoração de provas</li>
+                            <li>Tipificação de crimes</li>
+                            <li>Aplicação de normas jurídicas a fatos</li>
+                            <li>Qualquer finalidade listada como "Alto Risco"</li>
+                        </ul>
+                        <p style="background: #ffebee; padding: 12px; border-radius: 5px; margin-top: 15px; font-weight: 600;">
+                            ⚠️ <strong>Regra:</strong> Use apenas para tarefas de baixo risco ou com supervisão rigorosa
+                        </p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #c62828; margin-top: 0;">❌ 3. Fornecedores que Usam Dados para Treinamento</h4>
+                        <p style="margin-bottom: 10px;"><strong>VEDADO usar serviços que:</strong></p>
+                        <ul>
+                            <li>Utilizem seus inputs para treinar modelos sem autorização expressa</li>
+                            <li>Compartilhem dados com terceiros</li>
+                            <li>Não garantam eliminação de histórico quando solicitado</li>
+                            <li>Não respeitem padrões de privacy by design e privacy by default</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- RESPONSABILIDADES DO ADVOGADO -->
+                <h2 style="margin-top: 50px;">⚠️ Responsabilidade Profissional e Ética</h2>
+
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-top: 0;">O advogado é SEMPRE responsável pelo resultado final:</h3>
+                    <ul style="line-height: 2; margin-top: 15px;">
                         <li>IA é ferramenta de assistência, não de substituição</li>
-                        <li>Sempre revise e valide o conteúdo gerado</li>
-                        <li>Verifique jurisprudência e legislação citadas (IAs podem inventar)</li>
-                        <li>Nunca entregue documentos gerados por IA sem revisão criteriosa</li>
-                        <li>Mantenha seu julgamento profissional como filtro final</li>
+                        <li><strong>Sempre revise e valide</strong> o conteúdo gerado</li>
+                        <li><strong>Verifique jurisprudência e legislação citadas</strong> (IAs podem inventar - "alucinações")</li>
+                        <li>Nunca entregue documentos gerados por IA sem <strong>revisão criteriosa</strong></li>
+                        <li>Mantenha seu <strong>julgamento profissional</strong> como filtro final</li>
+                        <li><strong>Personalize</strong> o conteúdo para o caso concreto</li>
                     </ul>
                 </div>
 
                 <div class="warning">
                     <h3>📜 Dever de Confidencialidade (OAB)</h3>
-                    <ul>
+                    <ul style="line-height: 1.8;">
                         <li><strong>Art. 34, VII do Código de Ética:</strong> dever de guardar sigilo</li>
-                        <li>Uso inadequado de IA pode configurar quebra de sigilo</li>
-                        <li>Violações podem gerar processos éticos e indenizações</li>
+                        <li>Uso inadequado de IA pode configurar <strong>quebra de sigilo</strong></li>
+                        <li>Violações podem gerar <strong>processos éticos e indenizações</strong></li>
+                        <li>Responsabilização por <strong>negligência na revisão</strong> de conteúdo gerado por IA</li>
                     </ul>
                 </div>
 
-                <h3>🤝 Transparência com Clientes</h3>
+                <div class="danger">
+                    <h3>🚨 NUNCA faça isso:</h3>
+                    <table style="margin-top: 20px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 40%;">Ação Proibida</th>
+                                <th>Por Que é Grave</th>
+                                <th style="width: 25%;">Consequência</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Copiar e colar petição gerada por IA sem revisar</td>
+                                <td>Pode conter jurisprudência falsa, erros jurídicos, inadequação ao caso</td>
+                                <td style="color: #c62828; font-weight: 600;">Litigância de má-fé, processo ético OAB</td>
+                            </tr>
+                            <tr>
+                                <td>Inserir dados sigilosos de clientes em IA pública</td>
+                                <td>Violação da LGPD, quebra de sigilo profissional</td>
+                                <td style="color: #c62828; font-weight: 600;">Processo ético, indenização, crime</td>
+                            </tr>
+                            <tr>
+                                <td>Confiar cegamente em citações legais fornecidas por IA</td>
+                                <td>IA inventa leis, súmulas e processos inexistentes</td>
+                                <td style="color: #c62828; font-weight: 600;">Perda de credibilidade, multa, responsabilização</td>
+                            </tr>
+                            <tr>
+                                <td>Usar IA para valorar provas ou aplicar normas sem supervisão</td>
+                                <td>Vedado pela Resolução 615/2025 (alto risco)</td>
+                                <td style="color: #c62828; font-weight: 600;">Nulidade processual, responsabilização</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- BOAS PRÁTICAS -->
+                <h2 style="margin-top: 50px;">✅ Boas Práticas para Uso Ético de IA</h2>
+
                 <div class="success">
-                    <h4>Boas práticas:</h4>
-                    <ul>
+                    <h3 style="margin-top: 0;">1. Transparência com Clientes</h3>
+                    <ul style="line-height: 1.8;">
                         <li>Informe aos clientes sobre uso de IA, se relevante</li>
                         <li>Deixe claro que você supervisiona todo conteúdo</li>
                         <li>Explique benefícios (maior agilidade, menor custo)</li>
                         <li>Garanta que a qualidade não será comprometida</li>
                     </ul>
                 </div>
+
+                <div class="success">
+                    <h3>2. Verificação Rigorosa</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>SEMPRE verifique:</strong> Números de leis, artigos, súmulas, jurisprudência</li>
+                        <li>Consulte fontes oficiais (Planalto, sites dos tribunais)</li>
+                        <li>Confirme vigência das normas (se não foram revogadas)</li>
+                        <li>Valide a redação de dispositivos legais</li>
+                    </ul>
+                </div>
+
+                <div class="success">
+                    <h3>3. Personalização e Expertise</h3>
+                    <ul style="line-height: 1.8;">
+                        <li>Use IA como <strong>rascunho inicial</strong>, não como produto final</li>
+                        <li>Adicione seu raciocínio jurídico e análise pessoal</li>
+                        <li>Adapte à realidade específica do caso</li>
+                        <li>Inclua sua estratégia processual</li>
+                        <li>Considere jurisprudência local e perfil do magistrado</li>
+                    </ul>
+                </div>
+
+                <div class="success">
+                    <h3>4. Capacitação Contínua</h3>
+                    <ul style="line-height: 1.8;">
+                        <li>Mantenha-se atualizado sobre novas tecnologias</li>
+                        <li>Participe de treinamentos sobre uso ético de IA</li>
+                        <li>Aprenda sobre limitações e riscos das ferramentas</li>
+                        <li>Acompanhe atualizações da Resolução CNJ 615/2025</li>
+                    </ul>
+                </div>
+
+                <!-- REGISTRO E TRANSPARÊNCIA -->
+                <h2 style="margin-top: 50px;">📋 Sistema Sinapses e Transparência</h2>
+
+                <div class="tool-card">
+                    <h3 style="color: var(--primary); margin-top: 0;">O que é o Sinapses? (Art. 23-25)</h3>
+                    
+                    <p style="margin-bottom: 20px;">
+                        Plataforma do CNJ que armazena, testa, treina, distribui e audita modelos de IA usados no Judiciário.
+                    </p>
+
+                    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #1565c0; margin-top: 0;">🔍 O que o Sinapses faz:</h4>
+                        <ul style="line-height: 1.8;">
+                            <li>Cadastra todas as soluções de IA do Judiciário</li>
+                            <li>Classifica o grau de risco de cada aplicação</li>
+                            <li>Disponibiliza relatórios de auditoria e impacto algorítmico</li>
+                            <li>Permite transparência sobre quais IAs estão sendo usadas</li>
+                            <li>Facilita compartilhamento de soluções entre tribunais</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #2e7d32; margin-top: 0;">✅ Benefícios para Advogados:</h4>
+                        <ul style="line-height: 1.8;">
+                            <li>Saber quais IAs estão sendo usadas no seu processo</li>
+                            <li>Acessar informações sobre como funcionam</li>
+                            <li>Contestar resultados quando houver suspeita de viés</li>
+                            <li>Peticionar por auditorias quando necessário</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- COMITÊ NACIONAL DE IA -->
+                <h2 style="margin-top: 50px;">🏛️ Comitê Nacional de Inteligência Artificial do Judiciário</h2>
+
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-top: 0;">Composição (Art. 15)</h3>
+                    
+                    <p style="margin-bottom: 20px;">Órgão plural com <strong>14 membros titulares</strong>, incluindo:</p>
+
+                    <div class="grid">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px;">
+                            <h4 style="color: white; margin-top: 0;">⚖️ Magistrados</h4>
+                            <p>Conselheiros CNJ, juízes auxiliares, desembargadores</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px;">
+                            <h4 style="color: white; margin-top: 0;">👥 Atores do Sistema</h4>
+                            <p>OAB, Ministério Público, Defensoria Pública (com voz, sem voto)</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px;">
+                            <h4 style="color: white; margin-top: 0;">🎓 Especialistas</h4>
+                            <p>Sociedade civil com expertise em IA, tecnologia e direitos humanos</p>
+                        </div>
+                    </div>
+
+                    <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: #e65100; margin-top: 0;">⚙️ Principais Competências (Art. 16):</h4>
+                        <ul style="line-height: 1.8;">
+                            <li>Atualizar classificação de riscos anualmente</li>
+                            <li>Estabelecer normas de governança, transparência e auditoria</li>
+                            <li>Avaliar uso de ferramentas de mercado (ChatGPT, Claude, etc.)</li>
+                            <li>Determinar auditorias e monitoramento</li>
+                            <li>Criar protocolos técnicos padronizados</li>
+                            <li>Elaborar manual de boas práticas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PRAZOS E VIGÊNCIA -->
+                <h2 style="margin-top: 50px;">⏰ Prazos e Entrada em Vigor</h2>
+
+                <div class="tool-card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Marco Temporal</th>
+                                <th>O Que Acontece</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">11/03/2025</td>
+                                <td>Publicação da Resolução CNJ nº 615/2025</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">120 dias após publicação</td>
+                                <td><strong>Início de vigência</strong> da Resolução (aproximadamente julho/2025)</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">12 meses após publicação</td>
+                                <td>Prazo para <strong>adequação de projetos já existentes</strong> às novas regras (Art. 45)</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">A partir da vigência</td>
+                                <td><strong>Revogação</strong> da Resolução CNJ nº 332/2020 (antiga regulamentação)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- RESUMO EXECUTIVO -->
+                <h2 style="margin-top: 50px;">📌 Resumo Executivo: O Que Você Precisa Saber</h2>
+
+                <div class="highlight" style="background: linear-gradient(120deg, #1e3a5f 0%, #2c5f8d 100%);">
+                    <h3 style="color: white; margin-top: 0;">✅ PODE</h3>
+                    <ul style="color: white; line-height: 2;">
+                        <li>Usar IA generativa (ChatGPT, Claude, etc.) como ferramenta de apoio</li>
+                        <li>Gerar rascunhos, pesquisar legislação, estruturar argumentos</li>
+                        <li>Usar em tarefas de baixo risco com supervisão adequada</li>
+                        <li>Ser informado quando IA for usada em seus processos</li>
+                        <li>Acessar relatórios de auditoria e questionar resultados</li>
+                    </ul>
+
+                    <h3 style="color: white; margin-top: 30px;">❌ NÃO PODE</h3>
+                    <ul style="color: white; line-height: 2;">
+                        <li>Inserir dados sigilosos em IA externa sem anonimização</li>
+                        <li>Usar IA para valorar provas ou aplicar normas sem supervisão rigorosa</li>
+                        <li>Confiar cegamente em jurisprudência citada por IA (sempre verifique!)</li>
+                        <li>Copiar e colar conteúdo sem revisão técnica e personalização</li>
+                        <li>Delegar decisões finais à IA (responsabilidade é sempre sua)</li>
+                    </ul>
+
+                    <h3 style="color: white; margin-top: 30px;">⚠️ LEMBRE-SE</h3>
+                    <ul style="color: white; line-height: 2;">
+                        <li>Capacitação sobre IA é obrigatória e contínua</li>
+                        <li>Transparência com clientes é fundamental</li>
+                        <li>Verificação de fontes é sua responsabilidade ética</li>
+                        <li>A Resolução 615/2025 será atualizada - mantenha-se informado</li>
+                        <li>IA é ferramenta, não substituta do advogado</li>
+                    </ul>
+                </div>
+
+                <!-- RECURSOS ADICIONAIS -->
+                <div class="card" style="margin-top: 40px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                    <h3 style="color: var(--primary); margin-top: 0;">📚 Para Saber Mais</h3>
+                    <ul style="line-height: 2;">
+                        <li><strong>Texto completo:</strong> Resolução CNJ nº 615/2025 - 
+                            <a href="https://atos.cnj.jus.br/files/original1555302025031467d4517244566.pdf" target="_blank" style="color: var(--secondary);">
+                                Acesse aqui
+                            </a>
+                        </li>
+                        <li><strong>Plataforma Sinapses:</strong> Portal do CNJ (será disponibilizado)</li>
+                        <li><strong>Comitê Nacional de IA:</strong> Acompanhe publicações e diretrizes</li>
+                        <li><strong>Manual de Boas Práticas:</strong> Será elaborado pelo Comitê (Art. 19, §4º)</li>
+                    </ul>
+                </div>
             </section>
+
 
             <!-- SEÇÃO GLOSSÁRIO -->
             <section id="glossario">
@@ -2705,10 +3261,27 @@
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 30px; color: white; background: rgba(0,0,0,0.2); margin-top: 50px;">
-        <p>© 2025 - IA para Advogados | Bloco 1: Fundamentos e Primeiros Passos</p>
-        <p style="font-size: 0.9em; margin-top: 10px;">Material didático para uso educacional</p>
-    </footer>
+    <footer style="text-align: center; padding: 40px 20px; color: white; background: rgba(0,0,0,0.2); margin-top: 50px; border-top: 2px solid rgba(255,255,255,0.1);">
+        <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
+            © 2025 - IA para Advogados | Engenharia de Prompts
+        </p>
+        <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">
+            Material didático para uso educacional
+        </p>
+        
+        <!-- Divisória discreta -->
+        <div style="width: 60px; height: 1px; background: rgba(255,255,255,0.3); margin: 25px auto;"></div>
+        
+        <!-- Créditos do desenvolvedor -->
+        <p style="font-size: 0.85em; color: rgba(255,255,255,0.85); font-style: italic; margin-top: 15px;">
+            Desenvolvido por <strong style="font-weight: 600; color: rgba(255,255,255,0.95);">Osmar Fernandes de Oliveira Júnior</strong>
+        </p>
+        <p style="font-size: 0.8em; margin-top: 8px;">
+            <a href="mailto:osmar.tech.ai@gmail.com" style="color: rgba(255,255,255,0.85); text-decoration: none; transition: all 0.3s ease;">
+                📧 osmar.tech.ai@gmail.com
+            </a>
+        </p>
+    </footer>  
 
     <script>
         function showSection(sectionId) {
