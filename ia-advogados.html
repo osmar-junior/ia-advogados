@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA para Advogados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animação de fundo com partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            animation: fadeInDown 1s ease;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card-1 .card-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-2 .card-icon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .card-3 .card-icon {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-topics {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .card-topics li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-topics li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .card-2 .btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .card-2 .btn:hover {
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .card-3 .btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card-3 .btn:hover {
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+
+        /* Badge de Número */
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <header>
+            <span style="font-size: 4em; width: 110px; height: 110px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);">⚖️</span>
+            
+            <h1 style="color: white; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); margin-bottom: 15px; font-size: 3em; font-weight: 800; letter-spacing: -0.5px;">
+                IA para Advogados
+            </h1>
+
+            <!-- Linha decorativa inferior -->
+            <div style="margin-top: 35px; display: flex; justify-content: center; align-items: center; gap: 12px;">
+                <div style="height: 2px; width: 70px; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));"></div>
+                <div style="width: 10px; height: 10px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);"></div>
+                <div style="height: 2px; width: 40px; background: rgba(255, 255, 255, 0.5);"></div>
+                <div style="width: 6px; height: 6px; background: rgba(255, 255, 255, 0.7); border-radius: 50%;"></div>
+                <div style="height: 2px; width: 40px; background: rgba(255, 255, 255, 0.5);"></div>
+                <div style="width: 10px; height: 10px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);"></div>
+                <div style="height: 2px; width: 70px; background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6));"></div>
+            </div>
+        </header>
+
+        <div class="cards-container">
+
+            <!-- Card 1: Fundamentos -->
+            <div class="card card-1" onclick="navigateTo('ia-advogados-bloco-01.html')">
+                <div class="card-badge">1</div>
+                <div class="card-icon">🚀</div>
+                <h2>Fundamentos e Primeiros Passos</h2>
+                <p>Inicie sua jornada no mundo da Inteligência Artificial com conceitos essenciais e práticos.</p>
+                <ul class="card-topics">
+                    <li>Introdução</li>
+                    <li>Ferramentas e Comparativos</li>
+                    <li>Ética, Segurança</li>
+                    <li>Regulamentação de IA</li>
+                    <li>Glossários</li>
+                    <li>FAQ</li>
+                </ul>
+                <button class="btn">Começar Módulo →</button>
+            </div>
+
+            <!-- Card 2: Engenharia de Prompts -->
+            <div class="card card-2" onclick="navigateTo('ia-advogados-bloco-02.html')">
+                <div class="card-badge">2</div>
+                <div class="card-icon">💡</div>
+                <h2>Engenharia de Prompts</h2>
+                <p>Aprenda a se comunicar efetivamente com IAs e extrair o máximo potencial das ferramentas.</p>
+                <ul class="card-topics">
+                    <li>Fundamentos</li>
+                    <li>Metodologia RCTE</li>
+                    <li>Exemplos Práticos e Oficina</li>
+                    <li>Análise Comparativa</li>
+                    <li>Templates Prontos</li>
+                    <li>Erros Comuns</li>
+                    <li>Exercícios Interativos</li>
+                </ul>
+                <button class="btn">Começar Módulo →</button>
+            </div>
+
+            <!-- Card 3: Aplicações Estratégicas -->
+            <div class="card card-3" onclick="navigateTo('ia-advogados-bloco-03.html')">
+                <div class="card-badge">3</div>
+                <div class="card-icon">🎯</div>
+                <h2>Aplicações Estratégicas</h2>
+                <p>Implemente IA de forma estratégica em seus projetos e negócios.</p>
+                <ul class="card-topics">
+                    <li>Pesquisa Jurisprudencial</li>
+                    <li>Marketing Jurídico</li>
+                    <li>Criação de Conteúdo</li>
+                    <li>Tendências Futuras</li>
+                </ul>
+                <button class="btn">Começar Módulo →</button>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 40px 20px; color: white; background: rgba(0,0,0,0.2); margin-top: 50px; border-top: 2px solid rgba(255,255,255,0.1);">
+            <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
+                © 2025 - IA para Advogados | Engenharia de Prompts
+            </p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">
+                Material didático para uso educacional
+            </p>
+            
+            <!-- Divisória discreta -->
+            <div style="width: 60px; height: 1px; background: rgba(255,255,255,0.3); margin: 25px auto;"></div>
+            
+            <!-- Créditos do desenvolvedor -->
+            <p style="font-size: 0.85em; color: rgba(255,255,255,0.85); font-style: italic; margin-top: 15px;">
+                Desenvolvido por <strong style="font-weight: 600; color: rgba(255,255,255,0.95);">Osmar Fernandes de Oliveira Júnior</strong>
+            </p>
+            <p style="font-size: 0.8em; margin-top: 8px;">
+                <a href="mailto:osmar.tech.ai@gmail.com" style="color: rgba(255,255,255,0.85); text-decoration: none; transition: all 0.3s ease;">
+                    📧 osmar.tech.ai@gmail.com
+                </a>
+            </p>
+        </footer>  
+    </div>
+
+    <script>
+        // Criar partículas animadas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Navegação com animação
+        function navigateTo(page) {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '100%';
+            
+            setTimeout(() => {
+                window.location.href = page;
+            }, 300);
+        }
+
+        // Efeito de scroll suave
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Adicionar efeito de hover nos cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Efeito de digitação no título
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Inicializar ao carregar a página
+        window.addEventListener('load', () => {
+            createParticles();
+            
+            // Adicionar classe de animação aos cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease';
+                    card.style.opacity = '1';
+                }, index * 200);
+            });
+        });
+
+        // Easter egg - Pressionar 'Ctrl + Shift + I' para revelar mensagem especial
+        let keysPressed = {};
+        document.addEventListener('keydown', (e) => {
+            keysPressed[e.key] = true;
+            
+            if (keysPressed['Control'] && keysPressed['Shift'] && keysPressed['I']) {
+                console.log('%c🤖 Bem-vindo, futuro expert em IA! 🚀', 'font-size: 20px; color: #667eea; font-weight: bold;');
+                console.log('%cVocê descobriu o Easter Egg! Continue explorando...', 'font-size: 14px; color: #764ba2;');
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            delete keysPressed[e.key];
+        });
+    </script>
+</body>
+</html>
