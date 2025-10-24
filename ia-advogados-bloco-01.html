@@ -36,15 +36,152 @@
             padding: 20px;
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 30px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: sticky;
+        /* Animação de flutuação para o ícone */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Efeito hover nos badges do header */
+        header [style*="backdrop-filter"] > div:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Efeito de brilho animado no header */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
             top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--accent);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animação de pulso suave nos badges */
+        @keyframes pulse-soft {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        header [style*="backdrop-filter"] > div {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+
+        /* Responsividade aprimorada do header */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em !important;
+            }
+            
+            header h3 {
+                font-size: 1.2em !important;
+            }
+            
+            header [style*="width: 110px"] {
+                width: 90px !important;
+                height: 90px !important;
+            }
+            
+            header [style*="width: 110px"] span {
+                font-size: 3em !important;
+            }
+            
+            header > div[style*="position: absolute"] {
+                opacity: 0.5;
+            }
+            
+            header [style*="gap: 20px"] {
+                gap: 12px !important;
+            }
+            
+            header [style*="gap: 20px"] > div {
+                padding: 10px 20px !important;
+                font-size: 0.95em !important;
+            }
+            
+            header [style*="gap: 20px"] > div span:first-child {
+                font-size: 1.2em !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em !important;
+                margin-bottom: 12px !important;
+            }
+            
+            header h3 {
+                font-size: 1em !important;
+            }
+            
+            header [style*="backdrop-filter"] {
+                padding: 14px 28px !important;
+            }
+            
+            header [style*="gap: 20px"] {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            header [style*="gap: 20px"] > div {
+                width: 90%;
+                justify-content: center;
+                padding: 10px 16px !important;
+            }
+
+            header .header-content {
+                padding: 30px 15px !important;
+            }
+        }
+
+        /* Efeito de parallax suave nos círculos de fundo */
+        @keyframes float-bg {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(20px, -20px);
+            }
+        }
+
+        header > div[style*="position: absolute"]:nth-child(1) {
+            animation: float-bg 8s ease-in-out infinite;
+        }
+
+        header > div[style*="position: absolute"]:nth-child(2) {
+            animation: float-bg 10s ease-in-out infinite reverse;
+        }
+
+        header > div[style*="position: absolute"]:nth-child(3) {
+            animation: float-bg 12s ease-in-out infinite;
+        }
+
+        header > div[style*="position: absolute"]:nth-child(4) {
+            animation: float-bg 9s ease-in-out infinite reverse;
         }
 
         .header-content {
@@ -72,7 +209,7 @@
             backdrop-filter: blur(10px);
             padding: 15px 0;
             position: sticky;
-            top: 130px;
+            top: 0; /* MUDAR de 130px para 0 */
             z-index: 999;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -82,33 +219,60 @@
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-        }
+        } 
 
         .nav-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9em;
-            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
         }
 
         .nav-btn:hover {
             background: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         .nav-btn.active {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #f0c674 100%);
             color: var(--dark);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+            font-weight: 700;
         }
+
+        .nav-btn.active:hover {
+            background: linear-gradient(135deg, #f0c674 0%, var(--accent) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }       
 
         .content-wrapper {
             background: white;
@@ -176,13 +340,39 @@
         }
 
         .tool-card {
-            background: white;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            border-top: 4px solid var(--accent);
-            transition: all 0.3s;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border: none;
+            border-left: 6px solid var(--accent);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(30, 58, 95, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+            border-left-color: var(--primary);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
         }
 
         .tool-card:hover {
@@ -194,23 +384,144 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .tool-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.4s;
+        }
+
+        .tool-card:hover .tool-header::after {
+            width: 120px;
         }
 
         .tool-name {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: var(--primary);
-            font-weight: bold;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .tool-name::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
+            border-radius: 4px;
         }
 
         .tool-price {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #f0c674 100%);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tool-price:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .tool-card h4 {
+            color: var(--primary);
+            font-size: 1.25em;
+            margin: 25px 0 12px 0;
+            padding-left: 15px;
+            border-left: 3px solid var(--accent);
+            font-weight: 700;
+        }
+
+        .tool-card ul {
+            margin: 15px 0 15px 20px;
+            list-style: none;
+        }
+
+        .tool-card ul li {
+            margin: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .tool-card ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .tool-card p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Ícone grande no topo de cada ferramenta */
+        .tool-icon {
+            font-size: 3.5em;
+            display: inline-block;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            animation: bounce-soft 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce-soft {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Badge de destaque */
+        .tool-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
         }
+
+        /* Seção de características */
+        .tool-features {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .tool-features h4 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+        }    
 
         ul, ol {
             margin: 15px 0 15px 30px;
@@ -286,47 +597,176 @@
         }
 
         .faq-item {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 0;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
         }
 
         .faq-item:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .faq-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .faq-item.open {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.open::before {
+            transform: scaleY(1);
         }
 
         .faq-question {
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary);
-            font-size: 1.1em;
+            font-size: 1.15em;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 25px 30px;
+            gap: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.3s ease;
+        }
+
+        .faq-item.open .faq-question::before {
+            height: 60%;
+        }
+
+        .faq-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--accent) 0%, #f0c674 100%);
+            color: var(--dark);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.9em;
+            margin-right: 15px;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover .faq-number {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
         }
 
         .faq-answer {
-            margin-top: 15px;
+            margin: 0;
             color: #555;
             display: none;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
+            padding: 0 30px 25px 30px;
+            border-top: none;
+            line-height: 1.8;
+            animation: fadeInAnswer 0.5s ease;
         }
 
         .faq-item.open .faq-answer {
             display: block;
         }
 
+        @keyframes fadeInAnswer {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-answer p {
+            margin: 12px 0;
+        }
+
+        .faq-answer ul {
+            margin: 15px 0 15px 25px;
+            list-style: none;
+        }
+
+        .faq-answer ul li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .faq-answer ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .faq-answer strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
         .icon {
-            font-size: 1.2em;
-            transition: transform 0.3s;
+            font-size: 1.4em;
+            transition: transform 0.4s ease;
+            color: var(--accent);
+            font-weight: bold;
         }
 
         .faq-item.open .icon {
             transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        /* Badge de categoria no FAQ */
+        .faq-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
         }
 
         .grid {
@@ -355,13 +795,46 @@
             font-family: 'Courier New', monospace;
         }
 
+        /* Responsividade FAQ */
         @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
-            .subtitle { font-size: 1em; }
-            .content-wrapper { padding: 20px; }
-            .nav-content { gap: 5px; }
-            .nav-btn { padding: 8px 15px; font-size: 0.8em; }
-            .grid { grid-template-columns: 1fr; }
+            .faq-question {
+                font-size: 1em;
+                padding: 20px;
+            }
+            
+            .faq-number {
+                min-width: 30px;
+                height: 30px;
+                font-size: 0.85em;
+            }
+            
+            .faq-answer {
+                padding: 0 20px 20px 20px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            
+            .nav-content {
+                gap: 8px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.85em;
+                width: auto;
+                flex: 0 1 auto;
+            }
+            
+            .nav-content {
+                gap: 6px;
+                padding: 0 10px;
+            }
         }
 
         .progress-bar {
@@ -374,17 +847,274 @@
             z-index: 10000;
             transition: width 0.3s;
         }
+
+        @keyframes pulse-warning {
+            0%, 100% {
+                box-shadow: 0 3px 10px rgba(239, 68, 68, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 5px 20px rgba(239, 68, 68, 0.6);
+                transform: scale(1.05);
+            }
+        }
+        /* Cards de LLMs */
+        .llm-card {
+            background: white;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .llm-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .llm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .llm-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .llm-icon {
+            font-size: 2.5em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .llm-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .llm-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-multimodal {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: white;
+        }
+
+        .badge-proprietary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+        }
+
+        .badge-opensource {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .badge-recommended {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+
+        .badge-fast {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+        }
+
+        .badge-context {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .llm-toggle {
+            font-size: 1.2em;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+            margin-left: auto;
+        }
+
+        .llm-card.open .llm-toggle {
+            transform: rotate(180deg);
+        }
+
+        .llm-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+
+        .llm-card.open .llm-details {
+            max-height: 500px;
+            padding: 20px 25px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .llm-specs {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .llm-spec-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            align-items: center;
+        }
+
+        .spec-label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95em;
+        }
+
+        .spec-value {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .highlight-context {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .llm-use-case {
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 15px;
+        }
+
+        .llm-warning {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            margin-top: 12px;
+            font-size: 0.9em;
+            color: #92400e;
+        }
+
+        /* Responsividade dos cards LLM */
+        @media (max-width: 768px) {
+            .llm-spec-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .spec-label {
+                font-size: 0.9em;
+            }
+            
+            .llm-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .llm-badges {
+                width: 100%;
+            }
+            
+            .llm-toggle {
+                position: absolute;
+                right: 25px;
+                top: 25px;
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
 
-    <header>
-        <div class="header-content">
-            <h1>⚖️ IA para Advogados</h1>
-            <p class="subtitle">Bloco 1: Fundamentos e Primeiros Passos</p>
+    <header style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
+        <!-- Elementos decorativos de fundo -->
+        <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(255, 255, 255, 0.08); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; top: 50%; right: 20%; width: 250px; height: 250px; background: rgba(118, 75, 162, 0.15); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; bottom: 20%; left: 15%; width: 180px; height: 180px; background: rgba(102, 126, 234, 0.12); border-radius: 50%; z-index: 0;"></div>
+        
+        <!-- Padrão de linhas diagonais -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px); z-index: 0;"></div>
+        
+        <div class="header-content" style="position: relative; z-index: 1; padding: 40px 20px;">
+            <!-- Ícone principal animado -->
+            <div style="display: inline-block; margin-bottom: 25px; animation: float 3s ease-in-out infinite;">
+                <div style="background: rgba(255, 255, 255, 0.2); width: 110px; height: 110px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);">
+                    <span style="font-size: 4em;">⚖️</span>
+                </div>
+            </div>
+            
+            <h1 style="color: white; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); margin-bottom: 15px; font-size: 3em; font-weight: 800; letter-spacing: -0.5px;">
+                IA para Advogados
+            </h1>
+            
+            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); display: inline-block; padding: 18px 40px; border-radius: 50px; margin-bottom: 30px; border: 2px solid rgba(255, 255, 255, 0.25); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+                <h3 style="color: white; margin: 0; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);">
+                    Bloco 1: Fundamentos e Primeiros Passos
+                </h3>
+            </div>
+            
+            <!-- Badges informativos -->
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+                <div style="background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); color: white; padding: 12px 28px; border-radius: 30px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s;">
+                    <span style="font-size: 1.3em;">📚</span>
+                    <span style="font-size: 1.05em;">Introdução à IA</span>
+                </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); color: white; padding: 12px 28px; border-radius: 30px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s;">
+                    <span style="font-size: 1.3em;">🛠️</span>
+                    <span style="font-size: 1.05em;">7 Ferramentas</span>
+                </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); color: white; padding: 12px 28px; border-radius: 30px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s;">
+                    <span style="font-size: 1.3em;">⚖️</span>
+                    <span style="font-size: 1.05em;">Ética & Segurança</span>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); color: white; padding: 12px 28px; border-radius: 30px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s;">
+                    <span style="font-size: 1.3em;">🎯</span>
+                    <span style="font-size: 1.05em;">Nível: Iniciante</span>
+                </div>
+            </div>
+            
+            <!-- Linha decorativa inferior -->
+            <div style="margin-top: 35px; display: flex; justify-content: center; align-items: center; gap: 12px;">
+                <div style="height: 2px; width: 70px; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));"></div>
+                <div style="width: 10px; height: 10px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);"></div>
+                <div style="height: 2px; width: 40px; background: rgba(255, 255, 255, 0.5);"></div>
+                <div style="width: 6px; height: 6px; background: rgba(255, 255, 255, 0.7); border-radius: 50%;"></div>
+                <div style="height: 2px; width: 40px; background: rgba(255, 255, 255, 0.5);"></div>
+                <div style="width: 10px; height: 10px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);"></div>
+                <div style="height: 2px; width: 70px; background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6));"></div>
+            </div>
         </div>
-    </header>
+    </header>    
 
     <nav>
         <div class="nav-content">
@@ -432,6 +1162,7 @@
                     <li>Capacidade de generalizar conhecimento para novas situações</li>
                 </ul>
 
+
                 <h3>Modelos de Linguagem de Grande Porte (LLMs)</h3>
                 <div class="card">
                     <p>Estes modelos são algoritmos de IA treinados a partir de enormes volumes de <b>texto</b> (livros, artigos, sites) e aprendem padrões da linguagem, permitindo gerar, resumir, traduzir, analisar ou responder textos de forma natural.</p><br >
@@ -442,31 +1173,6 @@
                     <div style="text-align:center;">
                         <img src="img01.png" alt="Rede LLM com múltiplas camadas">
                     </div>    
-
-                    <table border="1" cellpadding="6">
-                        <thead>
-                            <tr>
-                                <th>Modelo</th><th>Empresa / Família</th><th>Tipo</th><th>Multimodal</th><th>Janela de Contexto</th><th>Destaques</th><th>Melhor Uso</th><th>Observações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>GPT-5</td><td>OpenAI</td><td>Proprietário</td><td>Sim (texto, imagem, voz, vídeo)</td><td>Até 400.000 tokens</td><td>Unificação de funções; raciocínio avançado; precisão e confiabilidade</td><td>Automação, agentes, raciocínio técnico</td><td>Reduz alucinações, integração nativa com ferramentas</td></tr> 
-
-                            <tr><td>GPT-4o</td><td>OpenAI</td><td>Proprietário</td><td>Sim (texto, imagem, áudio e vídeo)</td><td>Até 128.000 tokens</td><td>Processamento multimodal em tempo real, ótima fluência</td><td>Chat avançado, conteúdo multimodal</td><td>Foco em velocidade e qualidade multimodal</td></tr>
-
-                            <tr><td>Claude 4.5 Sonnet</td><td>Anthropic</td><td>Proprietário</td><td>Sim (texto e imagem)</td><td>Até 200.000 tokens</td><td>Seguro, ético, contexto e clareza</td><td>Escrita analítica, tutoria, suporte</td><td>Compreensão de textos complexos</td></tr>
-
-                            <tr><td>Claude Opus 4.1</td><td>Anthropic</td><td>Proprietário</td><td>Sim</td><td>Hasta 64.000 tokens saída</td><td>74,5% SWE-bench; raciocínio híbrido</td><td>Codificação, engenharia de software</td><td>Refatoração em bases grandes</td></tr>
-
-                            <tr><td>Gemini 2.5 Flash</td><td>Google DeepMind</td><td>Proprietário</td><td>Sim</td><td>Até 256.000 tokens</td><td>Rápido, baixo custo, "orçamento de pensamento"</td><td>Resumos e aplicações em tempo real</td><td>Ideal para startups e soluções ágeis</td></tr>
-
-                            <tr><td>Gemini 2.5 Pro</td><td>Google DeepMind</td><td>Proprietário</td><td>Sim (texto, imagem, vídeo, voz)</td><td>Até 1.000.000 tokens</td><td>Raciocínio científico, multimodalidade extrema</td><td>Pesquisa, análise científica/corporativa</td><td>Grande contexto, precisão extrema</td></tr>
-
-                            <tr><td>Grok 4</td><td>xAI (Elon Musk)</td><td>Proprietário</td><td>Sim (texto e dados estruturados)</td><td>128.000–256.000 tokens</td><td>Raciocínio lógico profundo, integração a ferramentas</td><td>Análise técnica, matemática, engenharia</td><td>Versão Heavy para tarefas complexas</td></tr>
-
-                            <tr><td>Qwen 2.5</td><td>Alibaba Cloud</td><td>Código aberto</td><td>Sim (texto e visual)</td><td>Até 128.000 tokens</td><td>Modelos 0,5B–72B parâmetros, produção estruturada</td><td>Geração estruturada, aplicações locais</td><td>Código aberto e escalabilidade</td></tr>
-                        </tbody>
-                    </table>
                 </div>
 
                 <h3>🎯 O conceito de Tokens</h3>
@@ -493,15 +1199,22 @@
                             <li>Contrato de 30 páginas ≈ 10.000-15.000 tokens</li>
                         </ul>
                     </div>
+
+                    <h4>Sites que realizam contagem de tokens:</h4>
+                    <ul>
+                        <li><a href="https://platform.openai.com/tokenizer" target="blank">https://platform.openai.com/tokenizer</a></li>
+                        <li><a href="https://www.prompttokencounter.com" target="blank">https://www.prompttokencounter.com</a></li>
+                        <li><a href="https://vcalazans.dev/tools/token-calculator" target="blank">https://vcalazans.dev/tools/token-calculator</a></li>
+                    </ul>
                 </div>
 
                 <h3>📏 Janela de Contexto</h3>
                 <p>Quantidade máxima de tokens que um modelo consegue processar simultaneamente:</p>
                 <div class="grid">
                     <div class="grid-item">
-                        <h4>ChatGPT 4</h4>
-                        <p>128.000 tokens</p>
-                        <p>≈ 96.000 palavras ou ≈ 300 páginas</p>
+                        <h4>ChatGPT 5</h4>
+                        <p>até 400.000 tokens</p>
+                        <p>≈ 300.000 palavras ou ≈ 1.000 páginas</p>
                     </div>
                     <div class="grid-item">
                         <h4>Claude</h4>
@@ -509,9 +1222,328 @@
                         <p>≈ 150.000 palavras ou ≈ 500 páginas</p>
                     </div>
                     <div class="grid-item">
-                        <h4>Gemini</h4>
-                        <p>até 2.000.000 tokens</p>
-                        <p>≈ 1.500.000 palavras</p>
+                        <h4>Gemini Pro</h4>
+                        <p>até 1.000.000 tokens</p>
+                        <p>≈ 750.000 palavras ou ≈ 2.500 páginas</p>
+                    </div>
+                </div>                
+
+                <h3>📊 Principais Modelos de Linguagem (LLMs) - 2025</h3>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 15px; margin: 25px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; font-size: 1.1em; color: #555; margin-bottom: 25px;">
+                        <strong>Comparativo dos modelos mais avançados do mercado</strong><br>
+                        <span style="font-size: 0.9em; color: #777;">Clique em cada linha para ver mais detalhes</span>
+                    </p>
+
+                    <!-- GPT-5 -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">🤖</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">GPT-5</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">OpenAI</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">Até 400.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Texto, imagem, voz, vídeo</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Unificação de funções; raciocínio avançado; reduz alucinações</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Automação, agentes inteligentes, raciocínio técnico complexo
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GPT-4o -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">🚀</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">GPT-4o</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">OpenAI</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">Até 128.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Texto, imagem, áudio, vídeo</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Processamento multimodal em tempo real, ótima fluência</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Chat avançado, conteúdo multimodal, aplicações em tempo real
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claude 4.5 Sonnet -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">🧠</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">Claude 4.5 Sonnet</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">Anthropic</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                                <span class="llm-badge badge-recommended">Recomendado</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">Até 200.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Texto e imagem</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Seguro, ético, excelente contexto e clareza</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Escrita analítica, tutoria, suporte técnico, compreensão de textos complexos
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claude Opus 4.1 -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">💎</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">Claude Opus 4.1</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">Anthropic</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">Até 64.000 tokens (saída)</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Multimodal completo</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">74,5% SWE-bench; raciocínio híbrido avançado</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Codificação avançada, engenharia de software, refatoração em bases grandes
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gemini 2.5 Flash -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">⚡</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">Gemini 2.5 Flash</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">Google DeepMind</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                                <span class="llm-badge badge-fast">Rápido</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">Até 256.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Multimodal</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Rápido, baixo custo, "orçamento de pensamento"</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Resumos rápidos, aplicações em tempo real, soluções ágeis
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gemini 2.5 Pro -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">🔍</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">Gemini 2.5 Pro</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">Google DeepMind</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                                <span class="llm-badge badge-context">Contexto XL</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value highlight-context">Até 1.000.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Texto, imagem, vídeo, voz</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Raciocínio científico, multimodalidade extrema</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Pesquisa científica, análise corporativa complexa, grande contexto
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grok 4 -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">🚀</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">Grok 4</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">xAI (Elon Musk)</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-proprietary">Proprietário</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">128.000–256.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Texto e dados estruturados</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Raciocínio lógico profundo, integração a ferramentas</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Análise técnica, matemática, engenharia (versão Heavy para tarefas complexas)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qwen 2.5 -->
+                    <div class="llm-card" onclick="toggleLLM(this)">
+                        <div class="llm-header">
+                            <div class="llm-title">
+                                <span class="llm-icon">🇨🇳</span>
+                                <div>
+                                    <strong style="font-size: 1.3em; color: var(--primary);">Qwen 2.5</strong>
+                                    <span style="display: block; font-size: 0.9em; color: #666; margin-top: 3px;">Alibaba Cloud</span>
+                                </div>
+                            </div>
+                            <div class="llm-badges">
+                                <span class="llm-badge badge-multimodal">Multimodal</span>
+                                <span class="llm-badge badge-opensource">Código Aberto</span>
+                            </div>
+                            <span class="llm-toggle">▼</span>
+                        </div>
+                        
+                        <div class="llm-details">
+                            <div class="llm-specs">
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Janela de Contexto:</span>
+                                    <span class="spec-value">Até 128.000 tokens</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Modalidades:</span>
+                                    <span class="spec-value">Texto e visual</span>
+                                </div>
+                                <div class="llm-spec-item">
+                                    <span class="spec-label">Destaques:</span>
+                                    <span class="spec-value">Modelos 0,5B–72B parâmetros, produção estruturada</span>
+                                </div>
+                            </div>
+                            <div class="llm-use-case">
+                                <strong>💼 Melhor para:</strong> Geração estruturada, aplicações locais, escalabilidade
+                            </div>
+                            <div class="llm-warning">
+                                ⚠️ <strong>Atenção:</strong> Mesmo sendo código aberto, servidores na China podem ter implicações de privacidade
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -580,29 +1612,46 @@
 
                 <!-- ChatGPT -->
                 <div class="tool-card">
+                    <div class="tool-icon">🤖</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">🤖 ChatGPT (OpenAI)</span>
+                        <span class="tool-name">
+                            ChatGPT
+                            <span class="tool-badge">POPULAR</span>
+                        </span>
                         <span class="tool-price">Gratuito / Pago</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Modelo de linguagem mais popular mundialmente, desenvolvido pela OpenAI (empresa de Sam Altman, com investimento da Microsoft)</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>OpenAI</strong> - Modelo de linguagem mais popular mundialmente, desenvolvido pela OpenAI (empresa de Sam Altman, com investimento da Microsoft)
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Interface intuitiva e amigável</li>
-                        <li>Capacidade de manter conversas longas e contextuais</li>
-                        <li>Permite upload de documentos (PDFs, Word) na versão paga</li>
-                        <li>Possui "memória" das conversas anteriores</li>
-                        <li>Integração com plugins e ferramentas externas</li>
-                    </ul>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Interface intuitiva e amigável</li>
+                            <li>Capacidade de manter conversas longas e contextuais</li>
+                            <li>Permite upload de documentos (PDFs, Word) na versão paga</li>
+                            <li>Possui "memória" das conversas anteriores</li>
+                            <li>Integração com plugins e ferramentas externas</li>
+                        </ul>
+                    </div>
 
-                    <h4>Versões e Preços:</h4>
-                    <ul>
-                        <li><strong>Gratuita:</strong> GPT-3.5, limitações de uso, sem análise de documentos</li>
-                        <li><strong>Plus (US$ 20/mês):</strong> GPT-4, análise de documentos, geração de imagens (DALL-E)</li>
-                        <li><strong>Pro (US$ 200/mês):</strong> Acesso ilimitado, prioridade em novos recursos</li>
-                    </ul>
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>GPT-3.5, limitações de uso, sem análise de documentos</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Plus<br><span style="color: var(--accent);">US$ 20/mês</span></td>
+                            <td>GPT-4, análise de documentos, geração de imagens (DALL-E)</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Pro<br><span style="color: var(--accent);">US$ 200/mês</span></td>
+                            <td>Acesso ilimitado, prioridade em novos recursos</td>
+                        </tr>
+                    </table>
 
                     <div class="success">
                         <strong>✅ Pontos Fortes para Advogados:</strong>
@@ -624,7 +1673,7 @@
                         </ul>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Elaboração de minutas de contratos</li>
                         <li>Rascunhos de petições iniciais</li>
@@ -632,32 +1681,51 @@
                         <li>Reformulação de argumentos</li>
                         <li>Criação de checklists procedimentais</li>
                     </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://chatgpt.com" target="blank">https://chatgpt.com</a></li>
+                    </ul>    
                 </div>
 
                 <!-- Claude -->
                 <div class="tool-card">
+                    <div class="tool-icon">🧠</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">🧠 Claude (Anthropic)</span>
+                        <span class="tool-name">
+                            Claude
+                            <span class="tool-badge" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">RECOMENDADO</span>
+                        </span>
                         <span class="tool-price">Gratuito / Pago</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Desenvolvido pela Anthropic (fundada por ex-membros da OpenAI) com foco em segurança, ética e respostas mais "honestas"</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>Anthropic</strong> - Desenvolvido pela Anthropic (fundada por ex-membros da OpenAI) com foco em segurança, ética e respostas mais "honestas"
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Janela de contexto de até 200.000 tokens (processa documentos muito longos)</li>
-                        <li>Excelente capacidade de análise e síntese</li>
-                        <li>Mais cuidadoso ao admitir limitações (menos "alucinações")</li>
-                        <li>Interface limpa e funcional</li>
-                        <li>Melhor performance em tarefas analíticas complexas</li>
-                    </ul>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Janela de contexto de até 200.000 tokens (processa documentos muito longos)</li>
+                            <li>Excelente capacidade de análise e síntese</li>
+                            <li>Mais cuidadoso ao admitir limitações (menos "alucinações")</li>
+                            <li>Interface limpa e funcional</li>
+                            <li>Melhor performance em tarefas analíticas complexas</li>
+                        </ul>
+                    </div>
 
-                    <h4>Versões e Preços:</h4>
-                    <ul>
-                        <li><strong>Gratuita:</strong> Acesso ao Claude Sonnet, limitações de uso</li>
-                        <li><strong>Pro (US$ 20/mês):</strong> Claude Opus (mais avançado), 5x mais uso, prioridade</li>
-                    </ul>
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>Acesso ao Claude Sonnet, limitações de uso</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Pro<br><span style="color: var(--accent);">US$ 20/mês</span></td>
+                            <td>Claude Opus (mais avançado), 5x mais uso, prioridade</td>
+                        </tr>
+                    </table>
 
                     <div class="success">
                         <strong>✅ Pontos Fortes para Advogados:</strong>
@@ -679,7 +1747,7 @@
                         </ul>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Revisão de contratos extensos</li>
                         <li>Análise de due diligence</li>
@@ -687,31 +1755,50 @@
                         <li>Extração de informações específicas de processos</li>
                         <li>Identificação de cláusulas problemáticas</li>
                     </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://claude.ai" target="blank">https://claude.ai</a></li>
+                    </ul>    
                 </div>
 
                 <!-- Gemini -->
                 <div class="tool-card">
+                    <div class="tool-icon">🔍</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">🔍 Gemini (Google)</span>
+                        <span class="tool-name">
+                            Gemini
+                            <span class="tool-badge" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">GOOGLE</span>
+                        </span>
                         <span class="tool-price">Gratuito / Pago</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Modelo de IA do Google (sucessor do Bard) com integração nativa ao ecossistema Google</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>Google</strong> - Modelo de IA do Google (sucessor do Bard) com integração nativa ao ecossistema Google
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Acesso direto à busca do Google (informações atualizadas)</li>
-                        <li>Janela de contexto de até 2 milhões de tokens (a maior disponível)</li>
-                        <li>Integração com Google Workspace</li>
-                        <li>Capacidade multimodal (texto, imagem, vídeo)</li>
-                    </ul>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Acesso direto à busca do Google (informações atualizadas)</li>
+                            <li>Janela de contexto de até 2 milhões de tokens (a maior disponível)</li>
+                            <li>Integração com Google Workspace</li>
+                            <li>Capacidade multimodal (texto, imagem, vídeo)</li>
+                        </ul>
+                    </div>
 
-                    <h4>Versões e Preços:</h4>
-                    <ul>
-                        <li><strong>Gratuita:</strong> Gemini Pro, acesso básico</li>
-                        <li><strong>Advanced (R$ 97/mês):</strong> Gemini Ultra, integração completa com Google Workspace</li>
-                    </ul>
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>Gemini Pro, acesso básico</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Advanced<br><span style="color: var(--accent);">R$ 97/mês</span></td>
+                            <td>Gemini Ultra, integração completa com Google Workspace</td>
+                        </tr>
+                    </table>
 
                     <div class="success">
                         <strong>✅ Pontos Fortes para Advogados:</strong>
@@ -732,38 +1819,57 @@
                         </ul>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Pesquisa de legislação e jurisprudência recente</li>
                         <li>Análise de processos muito extensos</li>
                         <li>Integração com fluxo de trabalho no Google Workspace</li>
                         <li>Verificação de informações atualizadas</li>
                     </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://gemini.google.com" target="blank">https://gemini.google.com</a></li>
+                    </ul>  
                 </div>
 
                 <!-- Perplexity AI -->
                 <div class="tool-card">
+                    <div class="tool-icon">🔎</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">🔎 Perplexity AI</span>
+                        <span class="tool-name">
+                            Perplexity AI
+                            <span class="tool-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">PESQUISA</span>
+                        </span>
                         <span class="tool-price">Gratuito / Pago</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Ferramenta de busca potencializada por IA que combina busca na internet com síntese de informações</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>Perplexity</strong> - Ferramenta de busca potencializada por IA que combina busca na internet com síntese de informações
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Fornece fontes e citações para cada resposta</li>
-                        <li>Acesso a informações em tempo real</li>
-                        <li>Interface focada em pesquisa</li>
-                        <li>Modo "Pro" com busca acadêmica e capacidade de processar documentos</li>
-                    </ul>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Fornece fontes e citações para cada resposta</li>
+                            <li>Acesso a informações em tempo real</li>
+                            <li>Interface focada em pesquisa</li>
+                            <li>Modo "Pro" com busca acadêmica e capacidade de processar documentos</li>
+                        </ul>
+                    </div>
 
-                    <h4>Versões e Preços:</h4>
-                    <ul>
-                        <li><strong>Gratuita:</strong> Buscas limitadas por dia</li>
-                        <li><strong>Pro (US$ 20/mês):</strong> Buscas ilimitadas, upload de documentos, busca acadêmica</li>
-                    </ul>
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>Buscas limitadas por dia</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Pro<br><span style="color: var(--accent);">US$ 20/mês</span></td>
+                            <td>Buscas ilimitadas, upload de documentos, busca acadêmica</td>
+                        </tr>
+                    </table>
 
                     <div class="success">
                         <strong>✅ Pontos Fortes para Advogados:</strong>
@@ -785,7 +1891,7 @@
                         </ul>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Pesquisa de jurisprudência recente</li>
                         <li>Verificação de legislação atualizada</li>
@@ -793,26 +1899,47 @@
                         <li>Fact-checking de informações</li>
                         <li>Pesquisa preliminar para casos</li>
                     </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://www.perplexity.ai" target="blank">https://www.perplexity.ai</a></li>
+                    </ul> 
                 </div>
 
                 <!-- NotebookLM -->
                 <div class="tool-card">
+                    <div class="tool-icon">📓</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">📓 NotebookLM (Google)</span>
+                        <span class="tool-name">
+                            NotebookLM
+                            <span class="tool-badge" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">GRATUITO</span>
+                        </span>
                         <span class="tool-price">Gratuito</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Ferramenta do Google especializada em análise de documentos que cria um "caderno de notas" inteligente</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>Google</strong> - Ferramenta do Google especializada em análise de documentos que cria um "caderno de notas" inteligente
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Upload de até 50 documentos por "notebook"</li>
-                        <li>Análise profunda de PDFs, documentos, sites</li>
-                        <li>Geração de resumos, FAQs e guias de estudo</li>
-                        <li>Recurso único: Gera podcasts em áudio sobre seus documentos (Audio Overviews)</li>
-                        <li>Totalmente gratuito</li>
-                    </ul>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Upload de até 50 documentos por "notebook"</li>
+                            <li>Análise profunda de PDFs, documentos, sites</li>
+                            <li>Geração de resumos, FAQs e guias de estudo</li>
+                            <li>Recurso único: Gera podcasts em áudio sobre seus documentos (Audio Overviews)</li>
+                            <li>Totalmente gratuito</li>
+                        </ul>
+                    </div>
+
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>Acesso completo a todos os recursos, sem limitações significativas</td>
+                        </tr>
+                    </table>
 
                     <div class="success">
                         <strong>✅ Pontos Fortes para Advogados:</strong>
@@ -834,7 +1961,7 @@
                         </ul>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Preparação para audiências (analisa processo completo)</li>
                         <li>Due diligence (análise de múltiplos contratos)</li>
@@ -842,25 +1969,46 @@
                         <li>Organização de pesquisa jurídica</li>
                         <li>Criação de briefings de casos</li>
                     </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://notebooklm.google.com" target="blank">https://notebooklm.google.com</a></li>
+                    </ul>
                 </div>
 
                 <!-- DeepSeek -->
                 <div class="tool-card">
+                    <div class="tool-icon">🇨🇳</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">🇨🇳 DeepSeek</span>
+                        <span class="tool-name">
+                            DeepSeek
+                            <span class="tool-badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); animation: pulse-warning 2s ease-in-out infinite;">ATENÇÃO</span>
+                        </span>
                         <span class="tool-price">Gratuito</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Modelo chinês de código aberto que ganhou destaque por performance equiparável a modelos ocidentais</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>China (DeepSeek AI)</strong> - Modelo chinês de código aberto que ganhou destaque por performance equiparável a modelos ocidentais
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Totalmente gratuito</li>
-                        <li>Código aberto (transparência)</li>
-                        <li>Performance surpreendente para um modelo gratuito</li>
-                        <li>Interface simples</li>
-                    </ul>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Totalmente gratuito</li>
+                            <li>Código aberto (transparência)</li>
+                            <li>Performance surpreendente para um modelo gratuito</li>
+                            <li>Interface simples</li>
+                        </ul>
+                    </div>
+
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>Acesso completo sem custo</td>
+                        </tr>
+                    </table>
 
                     <div class="success">
                         <strong>✅ Pontos Fortes:</strong>
@@ -875,49 +2023,100 @@
                         <strong>⚠️ ATENÇÃO - Limitações Importantes:</strong>
                         <ul>
                             <li>Menos refinado para questões jurídicas complexas</li>
-                            <li><strong>Preocupações com privacidade de dados (servidores na China)</strong></li>
+                            <li><strong style="color: #dc2626; font-size: 1.1em;">⚠️ Preocupações com privacidade de dados (servidores na China)</strong></li>
                             <li>Conhecimento jurídico brasileiro limitado</li>
                             <li>Comunidade menor (menos suporte)</li>
                         </ul>
-                        <p><strong>⚠️ EVITE enviar dados sensíveis ou sigilosos de clientes!</strong></p>
+                        <p style="background: #fee2e2; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #dc2626;">
+                            <strong style="color: #991b1b;">🔐 AVISO DE SEGURANÇA:</strong><br>
+                            <span style="color: #7f1d1d;">EVITE enviar dados sensíveis ou sigilosos de clientes! A legislação chinesa permite acesso governamental a dados armazenados em seus servidores.</span>
+                        </p>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Testes iniciais sem custo</li>
                         <li>Tarefas administrativas simples</li>
-                        <li>Tradução de documentos</li>
-                        <li>Rascunhos preliminares</li>
+                        <li>Tradução de documentos públicos</li>
+                        <li>Rascunhos preliminares não-sensíveis</li>
+                    </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://chat.deepseek.com" target="blank">https://chat.deepseek.com</a></li>
                     </ul>
                 </div>
 
                 <!-- Qwen -->
                 <div class="tool-card">
+                    <div class="tool-icon">🇨🇳</div>
+                    
                     <div class="tool-header">
-                        <span class="tool-name">🇨🇳 Qwen (Alibaba)</span>
+                        <span class="tool-name">
+                            Qwen
+                            <span class="tool-badge" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">CÓDIGO ABERTO</span>
+                        </span>
                         <span class="tool-price">Gratuito</span>
                     </div>
                     
-                    <h4>O que é:</h4>
-                    <p>Modelo desenvolvido pela Alibaba com foco em eficiência e multilinguismo</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 20px; font-style: italic;">
+                        <strong>Alibaba Cloud</strong> - Modelo desenvolvido pela Alibaba com foco em eficiência e multilinguismo
+                    </p>
                     
-                    <h4>Principais Características:</h4>
-                    <ul>
-                        <li>Gratuito para uso</li>
-                        <li>Boa performance em português</li>
-                        <li>Código aberto</li>
-                    </ul>
-
-                    <div class="danger">
-                        <strong>⚠️ ATENÇÃO - Mesmas preocupações de privacidade do DeepSeek</strong>
-                        <p>Legislação chinesa permite acesso governamental a dados. Use apenas para conteúdo público ou genérico.</p>
+                    <div class="tool-features">
+                        <h4>✨ Principais Características:</h4>
+                        <ul>
+                            <li>Gratuito para uso</li>
+                            <li>Boa performance em português</li>
+                            <li>Código aberto (transparência técnica)</li>
+                            <li>Múltiplas versões adaptadas para diferentes tarefas</li>
+                        </ul>
                     </div>
 
-                    <h4>Aplicações Práticas:</h4>
+                    <h4>💰 Versões e Preços:</h4>
+                    <table style="margin: 15px 0; font-size: 0.95em;">
+                        <tr>
+                            <td style="width: 30%; font-weight: 600;">Gratuita</td>
+                            <td>Acesso completo, código aberto</td>
+                        </tr>
+                    </table>
+
+                    <div class="success">
+                        <strong>✅ Pontos Fortes:</strong>
+                        <ul>
+                            <li>Totalmente gratuito</li>
+                            <li>Código aberto permite auditoria</li>
+                            <li>Boa performance em diversas línguas</li>
+                            <li>Alternativa interessante para experimentação</li>
+                        </ul>
+                    </div>
+
+                    <div class="danger">
+                        <strong>⚠️ ATENÇÃO - Mesmas Preocupações de Privacidade do DeepSeek:</strong>
+                        <ul>
+                            <li><strong style="color: #dc2626;">Legislação chinesa permite acesso governamental a dados</strong></li>
+                            <li>Servidores localizados na China</li>
+                            <li>Menos especializado em contexto jurídico brasileiro</li>
+                            <li>Comunidade de desenvolvimento menor</li>
+                        </ul>
+                        <p style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #f59e0b;">
+                            <strong style="color: #92400e;">⚠️ RECOMENDAÇÃO:</strong><br>
+                            <span style="color: #78350f;">Use apenas para conteúdo público ou genérico. NUNCA para dados confidenciais de clientes ou informações processuais sensíveis.</span>
+                        </p>
+                    </div>
+
+                    <h4>🎯 Aplicações Práticas:</h4>
                     <ul>
                         <li>Exploração de alternativas gratuitas</li>
-                        <li>Tarefas administrativas</li>
+                        <li>Tarefas administrativas não-sensíveis</li>
                         <li>Comparação de resultados entre modelos</li>
+                        <li>Tradução de documentos públicos</li>
+                        <li>Experimentação com modelos de código aberto</li>
+                    </ul>
+
+                    <h4>🔗 Link de acesso:</h4>
+                    <ul>
+                        <li><a href="https://chat.qwen.ai" target="blank">https://chat.qwen.ai/</a></li>
                     </ul>
                 </div>
             </section>
@@ -1183,7 +2382,11 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        1. A IA vai substituir advogados?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">1</span>
+                            A IA vai substituir advogados?
+                            <span class="faq-category">Geral</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
                     <div class="faq-answer">
@@ -1194,9 +2397,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        2. É ético usar IA no exercício da advocacia?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">2</span>
+                            É ético usar IA no exercício da advocacia?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Ética</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Sim, desde que:</strong></p>
                         <ul>
@@ -1212,9 +2420,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        3. Posso confiar nas citações jurisprudenciais e legais fornecidas pela IA?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">3</span>
+                            Posso confiar nas citações jurisprudenciais e legais fornecidas pela IA?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">Segurança</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>NÃO confie cegamente.</strong> IAs frequentemente "alucinam" jurisprudência e citações.</p>
                         <p><strong>SEMPRE verifique:</strong></p>
@@ -1229,9 +2442,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        4. Qual ferramenta devo escolher se puder pagar apenas uma versão premium?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">4</span>
+                            Qual ferramenta devo escolher se puder pagar apenas uma versão premium?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Ferramentas</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Depende do seu foco:</strong></p>
                         <ul>
@@ -1249,9 +2467,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        5. Posso usar IA para casos sigilosos ou sob segredo de justiça?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">5</span>
+                            Posso usar IA para casos sigilosos ou sob segredo de justiça?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">Segurança</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Com extrema cautela:</strong></p>
                         <ul>
@@ -1265,9 +2488,15 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        6. A IA tem acesso à jurisprudência atualizada dos tribunais brasileiros?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">6</span>
+                            A IA tem acesso à jurisprudência atualizada dos tribunais brasileiros?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Pesquisa</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
+
                     <div class="faq-answer">
                         <p><strong>Não diretamente.</strong> Os modelos têm conhecimento até a data de corte de treinamento.</p>
                         <p><strong>Para jurisprudência recente:</strong></p>
@@ -1281,9 +2510,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        7. Posso ser punido pela OAB por usar IA?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">7</span>
+                            Posso ser punido pela OAB por usar IA?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Ética</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Não pelo simples uso de IA</strong>, mas pode ser punido por:</p>
                         <ul>
@@ -1297,9 +2531,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        8. Como faço para a IA "aprender" meu estilo de escrita?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">8</span>
+                            Como faço para a IA "aprender" meu estilo de escrita?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">Técnicas</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Técnicas:</strong></p>
                         <ul>
@@ -1314,9 +2553,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        9. Quanto tempo vou economizar usando IA?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">9</span>
+                            Quanto tempo vou economizar usando IA?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">Produtividade</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Varia muito, mas estudos indicam:</strong></p>
                         <ul>
@@ -1331,9 +2575,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        10. Preciso aprender programação para usar IA?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">10</span>
+                            Preciso aprender programação para usar IA?
+                            <span class="faq-category">Geral</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Não!</strong> As ferramentas que estamos usando são conversacionais - você "fala" com elas em português normal.</p>
                         <p>Nenhum conhecimento técnico é necessário. Nos blocos seguintes, você aprenderá técnicas de comunicação eficaz com IA, mas nada de código.</p>
@@ -1342,9 +2591,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        11. E se a IA gerar conteúdo errado em uma petição que eu não revisei?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">11</span>
+                            E se a IA gerar conteúdo errado em uma petição que eu não revisei?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">Segurança</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Você é o responsável.</strong> A IA é sua assistente, mas você assina o documento.</p>
                         <p>Assim como seria responsável por um erro de um estagiário que não supervisionou, é responsável pelo conteúdo gerado por IA.</p>
@@ -1354,9 +2608,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        12. Posso usar IA em audiências ou durante julgamentos?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">12</span>
+                            Posso usar IA em audiências ou durante julgamentos?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">Prática</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Depende:</strong></p>
                         <ul>
@@ -1370,9 +2629,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        13. A IA pode me ajudar a captar clientes?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">13</span>
+                            A IA pode me ajudar a captar clientes?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Marketing</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Sim, indiretamente:</strong></p>
                         <ul>
@@ -1388,9 +2652,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        14. Qual a diferença entre usar IA gratuita vs. paga para advogados?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">14</span>
+                            Qual a diferença entre usar IA gratuita vs. paga para advogados?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Ferramentas</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+
                     <div class="faq-answer">
                         <p><strong>Versão gratuita:</strong></p>
                         <ul>
@@ -1413,9 +2682,14 @@
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        15. Como garantir que não estou plagiando ao usar conteúdo gerado por IA?
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <span class="faq-number">15</span>
+                            Como garantir que não estou plagiando ao usar conteúdo gerado por IA?
+                            <span class="faq-category" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Ética</span>
+                        </div>
                         <span class="icon">▼</span>
                     </div>
+                    
                     <div class="faq-answer">
                         <ul>
                             <li>IA não plagia no sentido tradicional - ela gera texto novo</li>
@@ -1563,6 +2837,19 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Função para expandir/colapsar cards de LLMs
+        function toggleLLM(card) {
+            // Fecha todos os outros cards
+            document.querySelectorAll('.llm-card').forEach(c => {
+                if (c !== card && c.classList.contains('open')) {
+                    c.classList.remove('open');
+                }
+            });
+            
+            // Toggle do card clicado
+            card.classList.toggle('open');
+        }        
     </script>
 </body>
 </html>
